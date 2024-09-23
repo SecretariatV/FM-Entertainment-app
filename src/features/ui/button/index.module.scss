@@ -1,0 +1,19 @@
+@use "@styles/variables" as *;
+@use "@styles/mixin" as *;
+
+.root {
+  border-radius: 6px;
+  background-color: $red;
+  height: 48px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  color: white;
+  @include h4;
+  @include normalAnim;
+
+  &:hover {
+    background-color: $white;
+    color: $semi-dark-blue;
+  }
+}

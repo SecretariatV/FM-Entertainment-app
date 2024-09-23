@@ -1,0 +1,61 @@
+@use "@styles/variables" as *;
+@use "@styles/mixin" as *;
+
+.root {
+  overflow: hidden;
+
+  .container {
+    display: flex;
+    width: 200vw;
+    height: 100vh;
+    @include normalAnim;
+
+    &:has(input[id="change_mode"]:checked) {
+      transform: translateX(-50%);
+    }
+  }
+
+  .wrapper {
+    width: 100vw;
+    display: grid;
+    place-items: center;
+
+    .modal {
+      width: 327px;
+      background-color: $semi-dark-blue;
+      padding: 24px 24px 32px;
+      display: grid;
+      gap: 40px;
+      border-radius: 10px;
+
+      &_title {
+        color: $white;
+        @include h1;
+      }
+
+      &_form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      &_change_mode {
+        color: $white;
+        text-align: center;
+        @include h4;
+
+        span {
+          color: $red;
+          position: relative;
+
+          input {
+            cursor: pointer;
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}

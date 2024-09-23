@@ -19,6 +19,7 @@ export default defineConfig((config) => {
         "@assets": "/src/assets",
         "@contexts": "/src/contexts",
         "@features": "/src/features",
+        "@hooks": "/src/hooks",
         "@pages": "/src/pages",
         "@styles": "/src/styles",
         "@utils": "/src/utils",

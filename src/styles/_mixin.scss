@@ -1,0 +1,32 @@
+@mixin h1 {
+  font-size: 32px;
+  letter-spacing: -0.5px;
+}
+
+@mixin h2 {
+  font-size: 24px;
+}
+
+@mixin h3 {
+  font-size: 18px;
+}
+
+@mixin h4 {
+  font-size: 15px;
+}
+
+@mixin h5 {
+  font-size: 13px;
+}
+
+@mixin medium {
+  font-weight: 500;
+}
+
+@mixin regular {
+  font-weight: 400;
+}
+
+@mixin normalAnim {
+  transition: all ease-in-out 0.3s;
+}
