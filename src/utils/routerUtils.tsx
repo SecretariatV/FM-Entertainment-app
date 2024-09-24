@@ -2,7 +2,7 @@ import LoadingPage from "@pages/loading";
 import { Suspense } from "react";
 import { ROUTER_DATA } from "./dataUtils";
 import { IRouterType } from "./typeUtils";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const renderRoutes = (routes: IRouterType[]) => {
   return routes.map(({ title, path, element, children = [] }) => {
@@ -17,7 +17,11 @@ const renderRoutes = (routes: IRouterType[]) => {
 const PageRouter = () => {
   const PAGE_ROUTER = renderRoutes(ROUTER_DATA);
 
-  return <Suspense fallback={<LoadingPage />}>{PAGE_ROUTER}</Suspense>;
+  return (
+    <Suspense fallback={<LoadingPage />}>
+      <Routes>{PAGE_ROUTER}</Routes>
+    </Suspense>
+  );
 };
 
 export default PageRouter;

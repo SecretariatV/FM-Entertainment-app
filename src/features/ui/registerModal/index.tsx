@@ -3,9 +3,12 @@ import { Input } from "../input";
 import S from "./index.module.scss";
 import { Button } from "../button";
 import { useState } from "react";
+import { useApp } from "@contexts/appContext";
 import clsx from "clsx";
+import { Icon } from "@assets/icon";
 
 export const RegisterModal = () => {
+  const { app, setApp } = useApp();
   const [mode, setMode] = useState<boolean>(false);
 
   const handleChangeMode = (mode: boolean) => {
@@ -39,12 +42,27 @@ export const RegisterModal = () => {
     console.log("response", res);
   };
 
+  const handleClose = () => {
+    setApp((prevState) => ({ ...prevState, viewRegister: false }));
+  };
+
   return (
-    <div className={S.root}>
+    <div className={clsx(S.root, app.viewRegister && S.active)}>
       <div className={S.container}>
         <div className={S.wrapper}>
           <div className={S.modal}>
-            <span className={S.modal_title}>Login</span>
+            <div className={S.modal_header}>
+              <span className={S.modal_title}>Login</span>
+              <button type="button" onClick={handleClose}>
+                <Icon
+                  name="Close"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 32 32"
+                  className={S.modal_close}
+                />
+              </button>
+            </div>
             <div className={S.modal_form}>
               <Input id="useremail" placeholder="Email address" type="text" />
               <Input id="userpassword" placeholder="Password" type="password" />
@@ -68,7 +86,18 @@ export const RegisterModal = () => {
         </div>
         <div className={S.wrapper}>
           <div className={S.modal}>
-            <span className={S.modal_title}>Signup</span>
+            <div className={S.modal_header}>
+              <span className={S.modal_title}>Signup</span>
+              <button type="button" onClick={handleClose}>
+                <Icon
+                  name="Close"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 32 32"
+                  className={S.modal_close}
+                />
+              </button>
+            </div>
             <div className={S.modal_form}>
               <Input id="email" placeholder="Email address" type="text" />
               <Input id="password" placeholder="Password" type="password" />

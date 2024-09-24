@@ -2,4 +2,63 @@
 @use "@styles/variables" as *;
 
 .root {
+  .wrapper {
+    background-color: $semi-dark-blue;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    .logo {
+      width: 25px;
+      height: 20px;
+      background-image: url("./min-logo.svg");
+    }
+
+    .navbar {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+
+      li {
+        list-style: none;
+        cursor: pointer;
+
+        svg {
+          fill: $white;
+          @include normalAnim;
+        }
+
+        &:hover {
+          svg {
+            fill: $red;
+          }
+        }
+      }
+    }
+
+    .avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 100%;
+      overflow: hidden;
+      border: 1px solid $white;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .register {
+      border-radius: 8px;
+      height: auto;
+      padding: 4px 6px;
+      @include h5;
+    }
+  }
+}
+
+.hidden {
+  display: none;
 }

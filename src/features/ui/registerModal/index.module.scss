@@ -3,6 +3,15 @@
 
 .root {
   overflow: hidden;
+  position: absolute;
+  inset: 0;
+  background-color: #0004;
+  backdrop-filter: blur(6px);
+  transform: translateY(-100%);
+
+  &.active {
+    animation: startAnim 0.4s ease-in-out forwards;
+  }
 
   .container {
     display: flex;
@@ -27,6 +36,11 @@
       display: grid;
       gap: 40px;
       border-radius: 10px;
+
+      &_header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+      }
 
       &_title {
         color: $white;
@@ -56,6 +70,21 @@
           }
         }
       }
+
+      &_close {
+        fill: $white;
+        @include normalAnim;
+
+        &:hover {
+          fill: $red;
+        }
+      }
     }
+  }
+}
+
+@keyframes startAnim {
+  100% {
+    transform: translateY(0%);
   }
 }
