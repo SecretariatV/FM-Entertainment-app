@@ -1,4 +1,4 @@
-import Navbar from "@features/navbar";
+import Navbar from "@features/layout/navbar";
 import S from "./index.module.scss";
 import { Outlet } from "react-router-dom";
 

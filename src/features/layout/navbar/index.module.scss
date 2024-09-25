@@ -26,13 +26,19 @@
         cursor: pointer;
 
         svg {
-          fill: $white;
+          fill: $greyish-blue;
           @include normalAnim;
         }
 
         &:hover {
           svg {
             fill: $red;
+          }
+        }
+
+        &.active {
+          svg {
+            fill: $white;
           }
         }
       }
