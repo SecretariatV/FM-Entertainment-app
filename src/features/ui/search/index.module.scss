@@ -1,0 +1,43 @@
+@use "@styles/variables" as *;
+@use "@styles/mixin" as *;
+
+.root {
+  display: flex;
+  align-items: start;
+  gap: 24px;
+  width: 300px;
+
+  svg {
+    fill: $white;
+  }
+
+  &_search {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+
+    .search {
+      caret-color: $red;
+      color: $white;
+      @include h2;
+
+      &::placeholder {
+        color: $white;
+        opacity: 0.5;
+      }
+
+      &:focus + .border {
+        transform: translateX(0);
+      }
+    }
+
+    .border {
+      width: 100%;
+      height: 1px;
+      background-color: $greyish-blue;
+      transform: translateX(-100%);
+      @include normalAnim;
+    }
+  }
+}

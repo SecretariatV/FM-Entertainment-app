@@ -1,2 +1,29 @@
+@use "@styles/mixin" as *;
+
 .root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px 56px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+
+    .sectiontitle {
+      color: white;
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+
+  .films {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+    justify-content: center;
+    @include normalAnim;
+  }
 }

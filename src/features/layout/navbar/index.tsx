@@ -6,12 +6,16 @@ import clsx from "clsx";
 import useCookie from "@hooks/useCookie";
 import { Icon } from "@assets/icon";
 import { NAV_DATA } from "@utils/dataUtils";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { setApp } = useApp();
   const navigate = useNavigate();
+  const location = useLocation();
   const cookie = useCookie("jwt");
+
+  const [path, setPath] = useState<string>("");
 
   const handleViewRegisterModal = () => {
     setApp((prevState) => ({ ...prevState, viewRegister: true }));
@@ -21,13 +25,21 @@ const Navbar = () => {
     navigate(path);
   };
 
+  useEffect(() => {
+    setPath(location.pathname.split("/")[1]);
+  }, [location]);
+
   return (
     <div className={S.root}>
       <div className={S.wrapper}>
         <button type="button" className={S.logo} />
         <nav className={S.navbar}>
           {NAV_DATA.map((data, index) => (
-            <li key={index} onClick={() => handleChangePath(data.path)}>
+            <li
+              key={index}
+              onClick={() => handleChangePath(data.path)}
+              className={path === data.path ? S.active : ""}
+            >
               <Icon
                 name={data.name}
                 width={data.width}

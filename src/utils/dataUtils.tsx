@@ -1,6 +1,9 @@
 import HomePage from "@pages/home";
 import { INavType, IRouterType } from "./typeUtils";
 import MainLayout from "@features/layout/mainLayout";
+import MoviePage from "@pages/movie";
+import SeriePage from "@pages/serie";
+import BookmarkPage from "@pages/bookmark";
 
 const ROUTER_DATA: IRouterType[] = [
   {
@@ -13,6 +16,9 @@ const ROUTER_DATA: IRouterType[] = [
         path: "",
         element: <HomePage />,
       },
+      { title: "Movie", path: "movie", element: <MoviePage /> },
+      { title: "Series", path: "series", element: <SeriePage /> },
+      { title: "Bookmark", path: "bookmark", element: <BookmarkPage /> },
     ],
   },
 ];
@@ -40,7 +46,7 @@ const NAV_DATA: INavType[] = [
     name: "Bookmark",
     width: "13.54",
     height: "16",
-    viewBox: "13.54",
+    viewBox: "0 0 13.54 16",
     path: "bookmark",
   },
 ];
