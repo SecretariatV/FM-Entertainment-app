@@ -2,6 +2,7 @@ import { IconNames } from "@assets/icon/icons";
 
 interface IAppProps {
   viewRegister: boolean;
+  registered: boolean;
 }
 
 interface IRouterType {
@@ -36,6 +37,8 @@ interface IEntertainmentType {
   year: number;
   category: string;
   rating: string;
+  isBookmarked: boolean;
+  _id: string;
 }
 
 export type { IRouterType, IAppProps, INavType, IEntertainmentType };

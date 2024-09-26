@@ -1,18 +1,33 @@
 import { IEntertainmentType } from "@utils/typeUtils";
 import S from "./item.module.scss";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { Icon } from "@assets/icon";
+import clsx from "clsx";
+import axios from "axios";
 
 interface IProps {
   data: IEntertainmentType;
+  setDatas: Dispatch<SetStateAction<IEntertainmentType[]>>;
 }
 
-const TrendingItem: FC<IProps> = ({ data }) => {
+const TrendingItem: FC<IProps> = ({ data, setDatas }) => {
+  const handleChangeBookmarkState = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env
+          .BACKEND_URL!}/api/entertainment/changeBookmark?category=trending`,
+        { _id: data._id, isBookmarked: data.isBookmarked }
+      );
+
+      setDatas(res.data);
+    } catch (error) {}
+  };
+
   return (
     <div className={S.root}>
       <picture>
         <source
-          media="(min-width: 1024px)"
+          media="(min-width: 768px)"
           srcSet={data.thumbnail.trending?.large}
         />
         <img
@@ -41,9 +56,27 @@ const TrendingItem: FC<IProps> = ({ data }) => {
         </div>
         <p>{data.title}</p>
       </div>
-      <div className={S.root_bookmark}>
-        <Icon name="LineBookmark" width="12" height="14" viewBox="0 0 12 14" />
-      </div>
+      <button
+        type="button"
+        className={clsx(S.root_bookmark, data.isBookmarked && S.active)}
+        onClick={handleChangeBookmarkState}
+      >
+        {data.isBookmarked ? (
+          <Icon
+            name="FillBookmark"
+            width="12"
+            height="14"
+            viewBox="0 0 12 14"
+          />
+        ) : (
+          <Icon
+            name="LineBookmark"
+            width="12"
+            height="14"
+            viewBox="0 0 12 14"
+          />
+        )}
+      </button>
     </div>
   );
 };

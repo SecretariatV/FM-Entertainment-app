@@ -16,30 +16,38 @@ export const RegisterModal = () => {
   };
 
   const handleRegister = async () => {
-    const res = await axios.post(
-      "http://localhost:4000/api/auth/signup",
-      {
-        name: "ares",
-        email: "ares.gmail11.com",
-        password: "1515151515",
-      },
-      { withCredentials: true }
-    );
+    try {
+      await axios.post(
+        `${process.env.BACKEND_URL!}/api/auth/signup`,
+        {
+          name: "ares",
+          email: "ares.gmail11.com",
+          password: "1515151515",
+        },
+        { withCredentials: true }
+      );
 
-    console.log("res", res);
+      setApp((prevState) => ({ ...prevState, viewRegister: false }));
+    } catch (error) {}
   };
 
   const handleLogin = async () => {
-    const res = await axios.post(
-      "http://localhost:4000/api/auth/login",
-      {
-        email: "ares.gmail11.com",
-        password: "1515151515",
-      },
-      { withCredentials: true }
-    );
+    try {
+      await axios.post(
+        `${process.env.BACKEND_URL!}/api/auth/login`,
+        {
+          email: "ares.gmail11.com",
+          password: "1515151515",
+        },
+        { withCredentials: true }
+      );
 
-    console.log("response", res);
+      setApp((prevState) => ({
+        ...prevState,
+        viewRegister: false,
+        registered: true,
+      }));
+    } catch (error) {}
   };
 
   const handleClose = () => {

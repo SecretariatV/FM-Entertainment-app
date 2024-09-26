@@ -5,7 +5,9 @@
   display: flex;
   align-items: start;
   gap: 24px;
-  width: 300px;
+  max-width: 800px;
+  width: 100%;
+  padding-right: 24px;
 
   svg {
     fill: $white;
@@ -16,10 +18,12 @@
     flex-direction: column;
     gap: 16px;
     overflow: hidden;
+    width: 100%;
 
     .search {
       caret-color: $red;
       color: $white;
+      width: 100%;
       @include h2;
 
       &::placeholder {

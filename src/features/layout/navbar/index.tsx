@@ -8,9 +8,10 @@ import { Icon } from "@assets/icon";
 import { NAV_DATA } from "@utils/dataUtils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Navbar = () => {
-  const { setApp } = useApp();
+  const { app, setApp } = useApp();
   const navigate = useNavigate();
   const location = useLocation();
   const cookie = useCookie("jwt");
@@ -24,6 +25,20 @@ const Navbar = () => {
   const handleChangePath = (path: string) => {
     navigate(path);
   };
+
+  const handleSignout = async () => {
+    try {
+      await axios.get(`${process.env.BACKEND_URL}/api/auth/signout`);
+
+      setApp((prevState) => ({ ...prevState, registered: false }));
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    if (cookie) {
+      setApp((prevState) => ({ ...prevState, registered: true }));
+    }
+  }, [cookie]);
 
   useEffect(() => {
     setPath(location.pathname.split("/")[1]);
@@ -52,9 +67,13 @@ const Navbar = () => {
         <Button
           title="Register"
           onClick={handleViewRegisterModal}
-          className={clsx(S.register, cookie && S.hidden)}
+          className={clsx(S.register, app.registered && S.hidden)}
         />
-        <button type="button" className={clsx(S.avatar, !cookie && S.hidden)}>
+        <button
+          type="button"
+          className={clsx(S.avatar, !app.registered && S.hidden)}
+          onClick={handleSignout}
+        >
           <img src={avatar} alt="avatar" />
         </button>
       </div>

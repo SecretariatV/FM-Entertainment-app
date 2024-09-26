@@ -2,6 +2,17 @@
 @use "@styles/variables" as *;
 
 .root {
+  @include breakpoint("md") {
+    padding: 24px;
+    padding-bottom: 0;
+  }
+
+  @include breakpoint("2xl") {
+    height: 100vh;
+    padding: 32px;
+    padding-right: 0;
+  }
+
   .wrapper {
     background-color: $semi-dark-blue;
     padding: 16px;
@@ -9,10 +20,24 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
 
+    @include breakpoint("md") {
+      border-radius: 10px;
+    }
+
+    @include breakpoint("2xl") {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+      height: 100%;
+    }
+
     .logo {
       width: 25px;
       height: 20px;
       background-image: url("./min-logo.svg");
+
+      @include breakpoint("2xl") {
+        justify-self: center;
+      }
     }
 
     .navbar {
@@ -20,6 +45,12 @@
       display: flex;
       align-items: center;
       gap: 24px;
+
+      @include breakpoint("2xl") {
+        flex-direction: column;
+        align-self: flex-start;
+        margin-top: 40px;
+      }
 
       li {
         list-style: none;

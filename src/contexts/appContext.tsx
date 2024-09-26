@@ -16,7 +16,10 @@ interface IAppContextType {
 const AppContext = createContext<IAppContextType | undefined>(undefined);
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [app, setApp] = useState<IAppProps>({ viewRegister: false });
+  const [app, setApp] = useState<IAppProps>({
+    viewRegister: false,
+    registered: false,
+  });
 
   return (
     <AppContext.Provider value={{ app, setApp }}>
