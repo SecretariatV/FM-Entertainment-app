@@ -33,7 +33,7 @@
     .logo {
       width: 25px;
       height: 20px;
-      background-image: url("./min-logo.svg");
+      background-image: url("/min-logo.svg");
 
       @include breakpoint("2xl") {
         justify-self: center;
