@@ -1,3 +1,19 @@
+$breakpoints: (
+  "xm": 360px,
+  "sm": 640px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1280px,
+  "2xl": 1440px,
+  "3xl": 1920px,
+);
+
+@mixin breakpoint($name) {
+  @media (min-width: map-get($breakpoints, $name)) {
+    @content;
+  }
+}
+
 @mixin h1 {
   font-size: 32px;
   letter-spacing: -0.5px;

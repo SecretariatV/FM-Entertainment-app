@@ -11,7 +11,7 @@ export const TrendingComponent = () => {
     const getData = async () => {
       try {
         const data = await axios.get(
-          "http://localhost:4000/api/entertainment?category=trending"
+          `${process.env.BACKEND_URL!}/api/entertainment?category=trending`
         );
 
         setDatas(data.data);
@@ -23,9 +23,11 @@ export const TrendingComponent = () => {
 
   return (
     <div className={S.root}>
-      {datas.map((data, index) => (
-        <TrendingItem key={index} data={data} />
-      ))}
+      <div className={S.container}>
+        {datas.map((data, index) => (
+          <TrendingItem key={index} data={data} setDatas={setDatas} />
+        ))}
+      </div>
     </div>
   );
 };

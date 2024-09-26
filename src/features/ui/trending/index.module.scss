@@ -1,5 +1,35 @@
+@use "@styles/mixin" as *;
+
 .root {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  overflow: hidden;
+  height: 140px;
+  width: calc(100vw - 48px);
+
+  @include breakpoint("md") {
+    height: 230px;
+  }
+
+  @include breakpoint("2xl") {
+    width: calc(100vw - 144px);
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(5, 470px);
+    gap: 24px;
+    animation: carouselAnim 8s linear infinite;
+    animation-play-state: running;
+  }
+
+  &:hover {
+    .container {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes carouselAnim {
+  to {
+    transform: translateX(-100%);
+  }
 }
